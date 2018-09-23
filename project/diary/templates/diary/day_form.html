@@ -2,8 +2,21 @@
 
 {% block content %}
 <form action="" method="POST"> <!--入力欄を作成するときform-->
-{{form.as_p}}   <!--入力欄自動作成-->
-<button type="submit">送信</button>
-{% csrf_token %}   <!--攻撃を防ぐおまじないデータを送信するときは必ず書く　method="POST"のとき-->
+	<table class="table">
+		<tr>
+			<th>タイトル</th>
+			<td>{{form.title}}</td>
+		</tr>
+		<tr>
+			<th>本文</th>
+			<td>{{form.text}}</td>
+		</tr>
+		<tr>
+			<th>日付</th>
+			<td>{{form.date}}</td>
+		</tr>
+	</table>
+<button type="submit" class="btn btn-primary">送信</button>
+{% csrf_token %}   <!--攻撃を防ぐおまじない、データを送信するときは必ず書く　method="POST"のとき-->
 </form>
 {% endblock %}
