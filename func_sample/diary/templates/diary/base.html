@@ -15,7 +15,9 @@
     <div class="container">
     <nav class="nav">
       <a class="nav-link" href="{% url 'diary:index' %}">一覧</a>  <!--urls.pyと一致するように-->
-      <a class="nav-link" href="{% url 'diary:add' %}">追加</a>
+      {%if user.is_superuser %}
+      <a class="nav-link" href="{% url 'diary:add' %}" target="_blank">追加</a> <!--アプリ名_モデル名_〇〇-->
+      {% endif %}
     </nav>
 
     {% block content %}

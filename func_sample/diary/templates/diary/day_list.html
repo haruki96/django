@@ -16,21 +16,20 @@
 		<tr>
 			<td><a href="{% url 'diary:detail' day.pk %}">{{day.title}}</a></td>
 			<td>{{day.date}}</td>
-			<td><a href="{% url 'diary:update' day.pk %}">更新</a></td>
-			<td><a href="{% url 'diary:delete' day.pk %}">削除</a></td>
+			<td>
+				{% if user.is_superuser %}
+				<a href="{% url 'diary:update' day.pk %}" target="_blank">更新</a>
+				{% endif %}
+			</td>
+			<td>
+				{% if user.is_superuser %}
+				<a href="{% url 'diary:delete' day.pk %}" target="_blank">削除</a>
+				{% endif %}
+			</td>
 		</tr>
 		{% endfor %}
 	</tbody>
 </table>
-
-<!--前へ　の部分-->
-{% if page_obj.has_previous %}
-<a href="?page={{page_obj.previous_page_number}}">前へ</a>
-{% endif %}
-
-<!--次へ　の部分-->
-{% if page_obj.has_next %}   <!--次があるか確認-->
-<a href="?page={{page_obj.next_page_number}}">次へ</a>
-{% endif %}
+{% include 'diary/page4.html' %}
 
 {% endblock %}
